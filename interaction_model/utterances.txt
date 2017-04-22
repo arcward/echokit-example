@@ -1,0 +1,3 @@
+HoursIntent what are your hours
+OrderIntent I'll have {MenuItem}
+CancelIntent cancel my order
