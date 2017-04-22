@@ -13,6 +13,7 @@ following exceptions:
  - At the **Select blueprint** screen, choose **Python 3.6** as the runtime, then
    choose **Blank Function**
  - In the **Configure function** section, set:
+ 
    + Runtime: **Python 3.6**
    + Handler: ``order_skill.handler``
 
