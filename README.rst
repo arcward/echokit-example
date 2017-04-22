@@ -13,7 +13,7 @@ following exceptions:
  - At the **Select blueprint** screen, choose **Python 3.6** as the runtime, then
    choose **Blank Function**
  - In the **Configure function** section, set:
- 
+
    + Runtime: **Python 3.6**
    + Handler: ``order_skill.handler``
 
@@ -32,23 +32,24 @@ See ``echopy-example/interaction_model/``
 **Intent schema**::
 
     {
-  "intents": [
-    {
-      "intent": "OrderIntent",
-      "slots": [
+      "intents": [
         {
-          "name": "MenuItem",
-          "type": "MENU_ITEM"
+          "intent": "OrderIntent",
+          "slots": [
+            {
+              "name": "MenuItem",
+              "type": "MENU_ITEM"
+            }
+          ]
+        },
+        {
+          "intent": "HoursIntent"
+        },
+        {
+          "intent": "CancelIntent"
         }
       ]
-    },
-    {
-      "intent": "HoursIntent"
-    },
-    {
-      "intent": "CancelIntent"
     }
-  ]
 
 **Utterances**::
 

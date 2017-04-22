@@ -1,14 +1,12 @@
 import echopy
-from echopy import Response, OutputSpeech
+from echopy import Response, PlainTextOutputSpeech, SimpleCard
 
-
-# In the lambda console, you would set your
-# handler to: ``example_main.handler``
-def handler(event, context):
-    return echopy.handler(event, context)
+# In the Lambda config, 'handler' would be
+# set to ``order_skill.handler``
+handler = echopy.handler
 
 # Your skill ID, as provided in the Alexa dev portal
-echopy.application_id = "your_app_id_here"
+echopy.application_id = "amzn1.ask.skill.a22e585b-20fe-420c-bba2-bf3a34e7691a"
 
 
 # All apps are required to handle three basic requests,
@@ -19,22 +17,22 @@ echopy.application_id = "your_app_id_here"
 
 # Handles: LaunchRequest
 @echopy.on_session_launch
-def session_started(event):
-    output_speech = OutputSpeech(text="Welcome to Order Maker!")
+def session_started(request, session):
+    output_speech = PlainTextOutputSpeech("Welcome to Order Maker!")
     return Response(output_speech=output_speech)
 
 
 # Handles: SessionEndedRequest
 @echopy.on_session_end
-def session_ended(event):
-    output_speech = OutputSpeech("See you later")
+def session_ended(request, session):
+    output_speech = PlainTextOutputSpeech("See you later")
     return Response(output_speech=output_speech)
 
 
 # Handles: IntentRequest
 @echopy.on_intent('HoursIntent')
-def on_intent(event):
-    output_speech = OutputSpeech(text="We're open today from 5am to 8pm")
+def hours_intent(request, session):
+    output_speech = PlainTextOutputSpeech("We're open today from 5am to 8pm")
     return Response(output_speech=output_speech)
 
 
@@ -44,13 +42,13 @@ def on_intent(event):
 # This would return output speech like: 'You asked me to jump'
 # The session variable would be returned on the next invocation
 @echopy.on_intent('OrderIntent')
-def specific_intent(event):
-    menu_item = event.request.intent.slots['MenuItem'].value
+def order_intent(request, session):
+    menu_item = request.intent.slots['MenuItem'].value
     response_text = f'You ordered: {menu_item}'
-    card = echopy.SimpleCard(title="Order", content=response_text)
-    session_attrs = {'last_order': menu_item}
-    return Response(output_speech=OutputSpeech(text=response_text),
-                    session_attributes=session_attrs, card=card)
+    card = SimpleCard(title="Order", content=response_text)
+    return Response(output_speech=PlainTextOutputSpeech(response_text),
+                    session_attributes={'last_order': menu_item},
+                    card=card)
 
 
 # Handles: IntentRequest (unimplemented intent)
@@ -61,7 +59,26 @@ def specific_intent(event):
 # by default echopy will return a "Sorry, I didn't
 # understand your request" speech response.
 @echopy.fallback
-def unimplemented(event):
-    intent_name = event.request.intent.name
-    output_speech = OutputSpeech(f"Sorry, {intent_name} isn't implemented!")
-    return Response(output_speech)
+def unimplemented(request, session):
+    output_speech = PlainTextOutputSpeech(f"Sorry, {request.intent.name} "
+                                          f"isn't implemented!")
+    return Response(output_speech=output_speech)
+
+
+
+{
+    'version': '1.0',
+    'response': {
+        'outputSpeech': {'type': 'PlainText', 'text': 'You ordered: pizza'},
+        'card': {'title': 'Order', 'content': 'You ordered: pizza'}
+    },
+    'sessionAttributes': {'last_order': 'pizza'}
+}
+
+{
+    'version': '1.0',
+    'response': {
+        'outputSpeech': {'type': 'PlainText', 'text': 'You ordered: pizza'},
+        'card': {'type': 'Simple', 'title': 'Order', 'content': 'You ordered: pizza'}},
+    'sessionAttributes': {'last_order': 'pizza'}
+ }
