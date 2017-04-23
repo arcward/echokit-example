@@ -63,22 +63,3 @@ def unimplemented(request, session):
     output_speech = PlainTextOutputSpeech(f"Sorry, {request.intent.name} "
                                           f"isn't implemented!")
     return Response(output_speech=output_speech)
-
-
-
-{
-    'version': '1.0',
-    'response': {
-        'outputSpeech': {'type': 'PlainText', 'text': 'You ordered: pizza'},
-        'card': {'title': 'Order', 'content': 'You ordered: pizza'}
-    },
-    'sessionAttributes': {'last_order': 'pizza'}
-}
-
-{
-    'version': '1.0',
-    'response': {
-        'outputSpeech': {'type': 'PlainText', 'text': 'You ordered: pizza'},
-        'card': {'type': 'Simple', 'title': 'Order', 'content': 'You ordered: pizza'}},
-    'sessionAttributes': {'last_order': 'pizza'}
- }
