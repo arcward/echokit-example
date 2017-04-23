@@ -23,7 +23,7 @@ def session_started(request, session):
 
 
 # Handles: SessionEndedRequest
-@echokit.on_session_ended
+@echokit.on_session_end
 def session_ended(request, session):
     output_speech = PlainTextOutputSpeech("See you later")
     return Response(output_speech=output_speech)
