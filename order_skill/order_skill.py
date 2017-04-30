@@ -23,7 +23,10 @@ def session_started(request, session):
 
 
 # Handles: SessionEndedRequest
+<<<<<<< HEAD
 # Can't respond, so this just logs the reason via print()
+=======
+>>>>>>> 204bee90ed51a0c4e12825b3d65ae2df7d42bda5
 @echokit.on_session_end
 def session_ended(request, session):
     print(request.reason)
@@ -63,22 +66,3 @@ def unimplemented(request, session):
     output_speech = PlainTextOutputSpeech(f"Sorry, {request.intent.name} "
                                           f"isn't implemented!")
     return Response(output_speech=output_speech)
-
-
-
-{
-    'version': '1.0',
-    'response': {
-        'outputSpeech': {'type': 'PlainText', 'text': 'You ordered: pizza'},
-        'card': {'title': 'Order', 'content': 'You ordered: pizza'}
-    },
-    'sessionAttributes': {'last_order': 'pizza'}
-}
-
-{
-    'version': '1.0',
-    'response': {
-        'outputSpeech': {'type': 'PlainText', 'text': 'You ordered: pizza'},
-        'card': {'type': 'Simple', 'title': 'Order', 'content': 'You ordered: pizza'}},
-    'sessionAttributes': {'last_order': 'pizza'}
- }
