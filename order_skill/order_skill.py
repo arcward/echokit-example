@@ -6,7 +6,7 @@ from echokit import Response, PlainTextOutputSpeech, SimpleCard
 handler = echokit.handler
 
 # Your skill ID, as provided in the Alexa dev portal
-echokit.application_id = "amzn1.ask.skill.a22e585b-20fe-420c-bba2-bf3a34e7691a"
+echokit.application_id = "your_app_id"
 
 
 # All apps are required to handle three basic requests,
@@ -22,11 +22,8 @@ def session_started(request, session):
     return Response(output_speech=output_speech)
 
 
-# Handles: SessionEndedRequest
-<<<<<<< HEAD
+# Handles: SessionEndedRequestf
 # Can't respond, so this just logs the reason via print()
-=======
->>>>>>> 204bee90ed51a0c4e12825b3d65ae2df7d42bda5
 @echokit.on_session_end
 def session_ended(request, session):
     print(request.reason)
