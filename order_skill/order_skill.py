@@ -23,10 +23,10 @@ def session_started(request, session):
 
 
 # Handles: SessionEndedRequest
-@echokit.on_session_ended
+# Can't respond, so this just logs the reason via print()
+@echokit.on_session_end
 def session_ended(request, session):
-    output_speech = PlainTextOutputSpeech("See you later")
-    return Response(output_speech=output_speech)
+    print(request.reason)
 
 
 # Handles: IntentRequest
