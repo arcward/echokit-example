@@ -37,7 +37,7 @@ See ``echokit-example/interaction_model/``
           "intent": "OrderIntent",
           "slots": [
             {
-              "name": "MenuItem",
+              "name": "menu_item",
               "type": "MENU_ITEM"
             }
           ]
