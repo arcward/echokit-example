@@ -1,5 +1,4 @@
 import echokit
-from echokit import Response, PlainTextOutputSpeech, SimpleCard
 
 # In the Lambda config, 'handler' would be
 # set to ``order_skill.handler``
@@ -7,6 +6,7 @@ handler = echokit.handler
 
 # Your skill ID, as provided in the Alexa dev portal
 echokit.application_id = "your_app_id"
+echokit.verify_application_id = True
 
 
 # All apps are required to handle three basic requests,
