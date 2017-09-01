@@ -54,10 +54,10 @@ See ``echokit-example/interaction_model/``
 **Utterances**::
 
     HoursIntent what are your hours
-    OrderIntent I'll have {MenuItem}
+    OrderIntent I'll have {menu_item}
     CancelIntent cancel my order
 
-Custom slots types
+Custom slot types
 ~~~~~~~~~~~~~~~~~~
 Add a custom slot type ``MENU_ITEM``, with whatever values you'd like.
 
