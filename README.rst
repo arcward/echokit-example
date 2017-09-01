@@ -65,12 +65,12 @@ Add a custom slot type ``MENU_ITEM``, with whatever values you'd like.
 Creating the Lambda deployment ZIP
 ----------------------------------
 After installing echokit_, in the command line, from
-the ``echokit-example/`` directory, run ``echodist --dir order_skill``. For
+the ``echokit-example/`` directory, run ``echodist order_skill``. For
 example, if you cloned this repo in your home directory:
 
 .. code-block:: bash
 
-    ~/echokit-example $ echodist --dir order_skill/
+    ~/echokit-example $ echodist order_skill/
 
 You can then upload the resulting ``order_skill.zip`` file via the Lambda
 console and test your skill from there or the `Alexa dev portal`_!
